@@ -65,4 +65,42 @@ button {
 button:hover {
     background: #5599ff;
 }
+/* Styl dla zakładki Konto */
+.konto {
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.formularz {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background: #66a6ff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #5599ff;
+}
 
