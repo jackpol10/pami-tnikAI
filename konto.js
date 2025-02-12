@@ -7,3 +7,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+function rejestracja() {
+    alert("Rejestracja wkrótce dostępna!");
+}
+
+function logowanie() {
+    alert("Logowanie wkrótce dostępne!");
+}
