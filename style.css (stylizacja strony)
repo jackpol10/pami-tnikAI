@@ -1,106 +1,75 @@
+/* Import nowoczesnej czcionki */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Styl ogólny */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     text-align: center;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
+/* Nawigacja */
 .navbar {
     background-color: #ff69b4;
     padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.navbar a {
+.nav-links a {
     color: white;
     text-decoration: none;
-    margin: 10px;
+    margin: 15px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.nav-links a:hover {
+    color: #fff0f5;
+    transform: scale(1.1);
+}
+
+/* Nagłówek */
+header {
+    margin-top: 50px;
+}
+
+h1 {
+    color: #ff1493;
+    font-size: 2.5em;
     font-weight: bold;
 }
 
-header {
-    margin-top: 20px;
+p {
+    font-size: 1.2em;
 }
 
-footer {
+/* Styl przycisku */
+.btn {
+    display: inline-block;
+    background-color: #ff69b4;
+    color: white;
+    padding: 12px 25px;
     margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background-color: #ff1493;
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(255, 20, 147, 0.4);
+}
+
+/* Stopka */
+footer {
+    margin-top: 40px;
     padding: 10px;
     background: #ff69b4;
     color: white;
 }
-/* Styl dla zakładki Konto */
-.konto {
-    background: linear-gradient(135deg, #89f7fe, #66a6ff);
-    text-align: center;
-    padding: 20px;
-}
-
-.formularz {
-    background: white;
-    padding: 20px;
-    margin: 20px auto;
-    width: 300px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    background: #66a6ff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-button:hover {
-    background: #5599ff;
-}
-/* Styl dla zakładki Konto */
-.konto {
-    background: linear-gradient(135deg, #89f7fe, #66a6ff);
-    text-align: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
-
-.formularz {
-    background: white;
-    padding: 20px;
-    margin: 20px auto;
-    width: 300px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    background: #66a6ff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-button:hover {
-    background: #5599ff;
-}
-
