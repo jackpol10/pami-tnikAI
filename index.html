@@ -53,6 +53,7 @@
         <div id="home" class="tab-content active-tab">
             <h2 class="text-3xl font-semibold mb-4 glow-text text-center">Witaj w Pamiętniku AI! 💖</h2>
             <p class="text-gray-700 text-lg text-center">Pamiętnik AI to Twój osobisty, wirtualny dziennik, który pozwala zapisywać myśli, przeżycia i emocje każdego dnia. AI analizuje Twoje wpisy, dostarcza inspirujące afirmacje oraz motywujące cytaty. To nie tylko miejsce na wspomnienia, ale także Twoje codzienne wsparcie i motywacja! Dołącz do nas i rozpocznij swoją podróż do lepszego samopoczucia i samoświadomości! ✨</p>
+            <p class="mt-4 text-gray-600 text-center">Zarejestruj się już dziś i zacznij korzystać z funkcji takich jak dodawanie notatek, generowanie afirmacji oraz prowadzenie albumu zdjęć!</p>
         </div>
         
         <div id="album" class="tab-content">
@@ -64,17 +65,17 @@
 
         <div id="auth" class="tab-content">
             <h2 class="text-xl font-semibold mb-4">Zaloguj się</h2>
-            <input type="text" placeholder="Login" class="w-full p-2 border rounded-md mb-2">
-            <input type="password" placeholder="Hasło" class="w-full p-2 border rounded-md mb-2">
+            <input type="text" id="loginUsername" placeholder="Login" class="w-full p-2 border rounded-md mb-2">
+            <input type="password" id="loginPassword" placeholder="Hasło" class="w-full p-2 border rounded-md mb-2">
             <button class="w-full bg-pink-500 text-white p-2 rounded-md">Zaloguj</button>
         </div>
 
         <div id="register" class="tab-content">
             <h2 class="text-xl font-semibold mb-4">Załóż konto</h2>
-            <input type="text" placeholder="Login" class="w-full p-2 border rounded-md mb-2">
-            <input type="email" placeholder="E-mail" class="w-full p-2 border rounded-md mb-2">
-            <input type="password" placeholder="Hasło" class="w-full p-2 border rounded-md mb-2">
-            <button class="w-full bg-pink-500 text-white p-2 rounded-md">Zarejestruj się</button>
+            <input type="text" id="registerUsername" placeholder="Login" class="w-full p-2 border rounded-md mb-2">
+            <input type="email" id="registerEmail" placeholder="E-mail" class="w-full p-2 border rounded-md mb-2">
+            <input type="password" id="registerPassword" placeholder="Hasło" class="w-full p-2 border rounded-md mb-2">
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md" onclick="registerUser()">Zarejestruj się</button>
         </div>
     </main>
     
