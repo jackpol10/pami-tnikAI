@@ -9,10 +9,19 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
+            background-image: url('https://source.unsplash.com/1600x900/?journal,diary');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
         .tab-content { display: none; }
         .active-tab { display: block; }
         .glow-text { text-shadow: 0 0 8px rgba(255, 105, 180, 0.8); }
+        .overlay {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+        }
     </style>
 </head>
 <body class="bg-pink-100 text-gray-900">
@@ -30,11 +39,15 @@
         <button class="tab-btn px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700" data-tab="auth">🔐 Logowanie</button>
     </nav>
     
-    <main class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg">
+    <main class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg overlay">
         <div id="home" class="tab-content active-tab">
-            <h2 class="text-2xl font-semibold mb-4 glow-text">Witaj w Pamiętniku AI! 💖</h2>
-            <p class="text-gray-700">To miejsce, gdzie możesz zapisywać swoje myśli, dodawać zdjęcia i otrzymywać inspirujące cytaty. Twój wirtualny pamiętnik z pomocą AI! ✨</p>
-            <img src="https://source.unsplash.com/800x400/?journal,flowers" class="mt-4 rounded-lg shadow-md">
+            <h2 class="text-3xl font-semibold mb-4 glow-text text-center">Witaj w Pamiętniku AI! 💖</h2>
+            <p class="text-gray-700 text-lg text-center">To miejsce stworzone specjalnie dla Ciebie! Możesz tutaj zapisywać swoje myśli, przeżycia i emocje każdego dnia. Dodawaj zdjęcia, twórz własne albumy i korzystaj z motywujących cytatów. Nasza AI pomoże Ci analizować Twoje wpisy i dostarczy Ci inspirujących afirmacji na dany dzień. ✨</p>
+            <div class="mt-6 grid grid-cols-2 gap-4">
+                <img src="https://source.unsplash.com/600x400/?notebook,writing" class="rounded-lg shadow-md">
+                <img src="https://source.unsplash.com/600x400/?cozy,coffee" class="rounded-lg shadow-md">
+            </div>
+            <p class="text-gray-700 text-lg mt-6 text-center">Zanurz się w świat własnych myśli i pozwól, aby Pamiętnik AI stał się Twoim cyfrowym przyjacielem! 💕</p>
         </div>
         
         <div id="notes" class="tab-content">
@@ -55,14 +68,6 @@
             <button class="w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition" onclick="addImage()">Dodaj zdjęcie</button>
             <div id="gallery" class="mt-4 grid grid-cols-2 gap-4"></div>
         </div>
-        
-        <div id="auth" class="tab-content text-right">
-            <h2 class="text-xl font-semibold mb-4">Zaloguj się</h2>
-            <input type="text" class="w-full p-2 border rounded-md mb-2" placeholder="Email">
-            <input type="password" class="w-full p-2 border rounded-md mb-2" placeholder="Hasło">
-            <button class="mt-4 w-full bg-pink-600 text-white p-2 rounded-md hover:bg-pink-700 transition">Zaloguj</button>
-            <p class="mt-2 text-sm">Nie masz konta? <a href="#" class="text-pink-600">Zarejestruj się</a></p>
-        </div>
     </main>
     
     <script>
@@ -75,32 +80,6 @@
                 document.getElementById(tab.getAttribute("data-tab")).classList.add("active-tab");
             });
         });
-        
-        function generateQuote() {
-            const quotes = [
-                "Każdy dzień jest nową szansą.",
-                "Jesteś silniejsza, niż myślisz.",
-                "Cokolwiek się stanie, dasz sobie radę!",
-                "Życie jest piękne – wystarczy spojrzeć z innej perspektywy."
-            ];
-            document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
-        }
-        
-        function addImage() {
-            const input = document.getElementById("imageUpload");
-            const gallery = document.getElementById("gallery");
-            
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement("img");
-                    img.src = e.target.result;
-                    img.classList.add("rounded-lg", "shadow-md", "w-full");
-                    gallery.appendChild(img);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
     </script>
 </body>
 </html>
