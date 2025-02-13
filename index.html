@@ -80,7 +80,7 @@
         </div>
     </main>
     
-    <script>
+   <script>
         document.querySelectorAll(".tab-btn").forEach(button => {
             button.addEventListener("click", () => {
                 document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active-tab"));
@@ -94,8 +94,6 @@
             if (email && password) {
                 localStorage.setItem(email, password);
                 alert("Rejestracja zakończona sukcesem! Możesz się teraz zalogować.");
-                document.getElementById("registerEmail").value = "";
-                document.getElementById("registerPassword").value = "";
             } else {
                 alert("Podaj email i hasło!");
             }
@@ -106,12 +104,11 @@
             const password = document.getElementById("loginPassword").value;
             if (localStorage.getItem(email) === password) {
                 alert("Zalogowano pomyślnie!");
-                document.getElementById("loginEmail").value = "";
-                document.getElementById("loginPassword").value = "";
             } else {
                 alert("Błędne dane logowania!");
             }
         }
     </script>
+
 </body>
 </html>
