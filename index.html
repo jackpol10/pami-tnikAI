@@ -12,21 +12,32 @@
         }
         .tab-content { display: none; }
         .active-tab { display: block; }
+        .glow-text { text-shadow: 0 0 8px rgba(255, 105, 180, 0.8); }
     </style>
 </head>
 <body class="bg-pink-100 text-gray-900">
-    <header class="bg-pink-500 text-white p-4 text-center text-2xl font-semibold shadow-md">
+    <header class="bg-pink-500 text-white p-4 text-center text-3xl font-semibold shadow-md glow-text">
         ✨ Pamiętnik AI ✨
     </header>
     
-    <nav class="flex justify-center space-x-4 p-4 bg-white shadow-md">
-        <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="notes">📝 Notatki</button>
-        <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="quotes">🌟 Cytaty</button>
-        <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="auth">🔐 Logowanie</button>
+    <nav class="flex justify-between p-4 bg-white shadow-md">
+        <div class="space-x-4">
+            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="home">🏠 Strona Główna</button>
+            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="notes">📝 Notatki</button>
+            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="quotes">🌟 Cytaty</button>
+            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="album">📷 Album</button>
+        </div>
+        <button class="tab-btn px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700" data-tab="auth">🔐 Logowanie</button>
     </nav>
     
-    <main class="max-w-3xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg">
-        <div id="notes" class="tab-content active-tab">
+    <main class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg">
+        <div id="home" class="tab-content active-tab">
+            <h2 class="text-2xl font-semibold mb-4 glow-text">Witaj w Pamiętniku AI! 💖</h2>
+            <p class="text-gray-700">To miejsce, gdzie możesz zapisywać swoje myśli, dodawać zdjęcia i otrzymywać inspirujące cytaty. Twój wirtualny pamiętnik z pomocą AI! ✨</p>
+            <img src="https://source.unsplash.com/800x400/?journal,flowers" class="mt-4 rounded-lg shadow-md">
+        </div>
+        
+        <div id="notes" class="tab-content">
             <h2 class="text-xl font-semibold mb-4">Dodaj nową notatkę:</h2>
             <textarea class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400" rows="4" placeholder="Napisz coś..."></textarea>
             <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition">Zapisz</button>
@@ -38,11 +49,18 @@
             <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition" onclick="generateQuote()">Nowy cytat</button>
         </div>
         
-        <div id="auth" class="tab-content">
+        <div id="album" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Twój album 📸</h2>
+            <input type="file" id="imageUpload" class="mb-4 p-2 border rounded-md">
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition" onclick="addImage()">Dodaj zdjęcie</button>
+            <div id="gallery" class="mt-4 grid grid-cols-2 gap-4"></div>
+        </div>
+        
+        <div id="auth" class="tab-content text-right">
             <h2 class="text-xl font-semibold mb-4">Zaloguj się</h2>
             <input type="text" class="w-full p-2 border rounded-md mb-2" placeholder="Email">
             <input type="password" class="w-full p-2 border rounded-md mb-2" placeholder="Hasło">
-            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition">Zaloguj</button>
+            <button class="mt-4 w-full bg-pink-600 text-white p-2 rounded-md hover:bg-pink-700 transition">Zaloguj</button>
             <p class="mt-2 text-sm">Nie masz konta? <a href="#" class="text-pink-600">Zarejestruj się</a></p>
         </div>
     </main>
@@ -66,6 +84,22 @@
                 "Życie jest piękne – wystarczy spojrzeć z innej perspektywy."
             ];
             document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
+        }
+        
+        function addImage() {
+            const input = document.getElementById("imageUpload");
+            const gallery = document.getElementById("gallery");
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.classList.add("rounded-lg", "shadow-md", "w-full");
+                    gallery.appendChild(img);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
         }
     </script>
 </body>
