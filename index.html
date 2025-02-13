@@ -36,17 +36,20 @@
             <button class="tab-btn" data-tab="quotes">🌟 Afirmacje</button>
             <button class="tab-btn" data-tab="album">📷 Album</button>
         </div>
-        <div class="space-x-2">
-            <button class="tab-btn" data-tab="auth">🔐 Zaloguj się</button>
-            <button class="tab-btn" data-tab="register">📝 Zarejestruj się</button>
+        <div class="space-x-4">
+            <button class="tab-btn" data-tab="register">🆕 Rejestracja</button>
+            <button class="tab-btn" data-tab="auth">🔐 Logowanie</button>
         </div>
     </nav>
     
     <main class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg overlay">
         <div id="home" class="tab-content active-tab">
             <h2 class="text-3xl font-semibold mb-4 glow-text text-center">Witaj w Pamiętniku AI! 💖</h2>
-            <p class="text-gray-700 text-lg text-center">Pamiętnik AI to Twój osobisty, wirtualny dziennik, który pozwala zapisywać myśli, przeżycia i emocje każdego dnia. AI analizuje Twoje wpisy, dostarcza inspirujące afirmacje oraz motywujące cytaty. Dołącz i zacznij swoją podróż już dziś! ✨</p>
-            <p class="text-gray-700 mt-4">PAMIĘTNIK AI to niezwykła przestrzeń online stworzona z myślą o tych, którzy pragną dzielić się swoimi myślami, emocjami i codziennymi przeżyciami w bezpiecznym, przyjaznym środowisku. To Twój osobisty wirtualny dziennik, który nie tylko przechowuje Twoje wspomnienia, ale także analizuje Twoje wpisy i dostarcza inspirujących rad oraz afirmacji, pomagając Ci w rozwoju osobistym i poprawie samopoczucia.</p>
+            <p class="text-gray-700 text-lg text-center">
+                PAMIĘTNIK AI to niezwykła przestrzeń online stworzona z myślą o tych, którzy pragną dzielić się swoimi myślami, emocjami i codziennymi przeżyciami 
+                w bezpiecznym, przyjaznym środowisku. To Twój osobisty wirtualny dziennik, który nie tylko przechowuje Twoje wspomnienia, ale także analizuje Twoje wpisy i dostarcza 
+                inspirujących rad oraz afirmacji, pomagając Ci w rozwoju osobistym i poprawie samopoczucia. Dołącz do nas i rozpocznij swoją podróż już dziś! ✨
+            </p>
         </div>
         
         <div id="notes" class="tab-content">
@@ -91,6 +94,32 @@
                 document.getElementById(button.getAttribute("data-tab")).classList.add("active-tab");
             });
         });
+        
+        function generateQuote() {
+            const quotes = [
+                "Jesteś wyjątkowa i silna.",
+                "Każdy dzień to nowa szansa.",
+                "Twoje myśli mają moc.",
+                "Nigdy nie rezygnuj ze swoich marzeń.",
+                "Masz w sobie nieskończoną siłę!"
+            ];
+            document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
+        }
+        
+        function addImage() {
+            const fileInput = document.getElementById("imageUpload");
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.classList.add("rounded-lg", "shadow-md");
+                    document.getElementById("gallery").appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 </body>
 </html>
