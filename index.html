@@ -71,6 +71,7 @@
     </main>
     
     <script>
+        // Obsługa przełączania zakładek
         const tabs = document.querySelectorAll(".tab-btn");
         const contents = document.querySelectorAll(".tab-content");
         
@@ -80,33 +81,34 @@
                 document.getElementById(tab.getAttribute("data-tab")).classList.add("active-tab");
             });
         });
-            function generateQuote() {
-        const quotes = [
-            "Jesteś silniejsza, niż myślisz.",
-            "Każdy dzień to nowa szansa na sukces.",
-            "Twoje myśli kształtują Twoją rzeczywistość.",
-            "Nigdy nie rezygnuj z marzeń.",
-            "Masz w sobie więcej mocy, niż sądzisz!"
-        ];
-        document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
-    }
 
-    function addImage() {
-        const fileInput = document.getElementById("imageUpload");
-        if (fileInput.files.length > 0) {
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.classList.add("rounded-lg", "shadow-md");
-                document.getElementById("gallery").appendChild(img);
-            };
-            reader.readAsDataURL(file);
+        // Generator cytatów
+        function generateQuote() {
+            const quotes = [
+                "Jesteś silniejsza, niż myślisz.",
+                "Każdy dzień to nowa szansa na sukces.",
+                "Twoje myśli kształtują Twoją rzeczywistość.",
+                "Nigdy nie rezygnuj z marzeń.",
+                "Masz w sobie więcej mocy, niż sądzisz!"
+            ];
+            document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
         }
-    }
-</script>
 
+        // Funkcja dodawania zdjęć do albumu
+        function addImage() {
+            const fileInput = document.getElementById("imageUpload");
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.classList.add("rounded-lg", "shadow-md", "w-full");
+                    document.getElementById("gallery").appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 </body>
 </html>
