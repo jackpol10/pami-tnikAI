@@ -22,20 +22,6 @@
             border-radius: 10px;
             padding: 20px;
         }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .modal.active {
-            display: block;
-        }
     </style>
 </head>
 <body class="bg-pink-100 text-gray-900">
@@ -47,49 +33,61 @@
         <div class="space-x-4">
             <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="home">🏠 Strona Główna</button>
             <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="notes">📝 Notatki</button>
-            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="quotes">🌟 Cytaty</button>
+            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="quotes">🌟 Afirmacje</button>
             <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="album">📷 Album</button>
         </div>
-        <button id="login-btn" class="px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700">🔐 Logowanie</button>
+        <button class="tab-btn px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700" data-tab="auth">🔐 Logowanie</button>
     </nav>
     
     <main class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg overlay">
         <div id="home" class="tab-content active-tab">
             <h2 class="text-3xl font-semibold mb-4 glow-text text-center">Witaj w Pamiętniku AI! 💖</h2>
-            <p class="text-gray-700 text-lg text-center">PAMIĘTNIK AI to niezwykła przestrzeń online stworzona z myślą o tych, którzy pragną dzielić się swoimi myślami, emocjami i codziennymi przeżyciami w bezpiecznym, przyjaznym środowisku...</p>
-            <p class="text-gray-700 text-lg mt-4">Czytaj więcej...</p>
+            <p class="text-gray-700 text-lg text-center">To miejsce stworzone specjalnie dla Ciebie! Możesz tutaj zapisywać swoje myśli, przeżycia i emocje każdego dnia. Dodawaj zdjęcia, twórz własne albumy i korzystaj z motywujących cytatów. Nasza AI pomoże Ci analizować Twoje wpisy i dostarczy Ci inspirujących afirmacji na dany dzień. ✨</p>
+            
+            <h3 class="text-xl font-semibold mt-6">Co to jest Pamiętnik AI?</h3>
+            <p class="text-gray-700 text-lg">Pamiętnik AI to Twój osobisty wirtualny dziennik, który analizuje Twoje wpisy i dostarcza inspirujących rad oraz afirmacji, pomagając Ci w rozwoju osobistym i poprawie samopoczucia.</p>
+            
+            <h3 class="text-xl font-semibold mt-6">Jak to działa?</h3>
+            <p class="text-gray-700 text-lg">Po zalogowaniu się możesz prowadzić swój dziennik online – dodawać wpisy, zdjęcia i refleksje. Sztuczna inteligencja analizuje Twoje treści, oferując spersonalizowane porady oraz afirmacje.</p>
         </div>
         
         <div id="notes" class="tab-content">
             <h2 class="text-xl font-semibold mb-4">Dodaj nową notatkę:</h2>
-            <textarea id="note-text" class="w-full p-3 border rounded-md" rows="4" placeholder="Napisz coś..."></textarea>
-            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600" onclick="analyzeNote()">Zapisz</button>
+            <textarea class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400" rows="4" placeholder="Napisz coś..."></textarea>
+            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition">Zapisz</button>
         </div>
         
         <div id="quotes" class="tab-content">
-            <h2 class="text-xl font-semibold mb-4">Twoje codzienne inspiracje:</h2>
+            <h2 class="text-xl font-semibold mb-4">Twoje codzienne afirmacje:</h2>
             <p id="quote" class="text-gray-700 italic">"Jesteś silniejsza, niż myślisz."</p>
-            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600" onclick="generateQuote()">Nowy cytat</button>
+            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition" onclick="generateQuote()">Nowa afirmacja</button>
+        </div>
+        
+        <div id="album" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Twój album 📸</h2>
+            <input type="file" id="imageUpload" class="mb-4 p-2 border rounded-md">
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition" onclick="addImage()">Dodaj zdjęcie</button>
+            <div id="gallery" class="mt-4 grid grid-cols-2 gap-4"></div>
         </div>
     </main>
     
-    <div id="login-modal" class="modal">
-        <h2 class="text-xl font-semibold">Logowanie</h2>
-        <input type="text" placeholder="Email" class="w-full p-2 border rounded-md mb-2">
-        <input type="password" placeholder="Hasło" class="w-full p-2 border rounded-md mb-4">
-        <button class="w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600">Zaloguj</button>
-        <button id="close-modal" class="w-full bg-gray-300 p-2 rounded-md mt-2">Zamknij</button>
-    </div>
-    
     <script>
-        document.getElementById("login-btn").addEventListener("click", function() {
-            document.getElementById("login-modal").classList.add("active");
+        document.querySelectorAll(".tab-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active-tab"));
+                document.getElementById(button.getAttribute("data-tab")).classList.add("active-tab");
+            });
         });
-        document.getElementById("close-modal").addEventListener("click", function() {
-            document.getElementById("login-modal").classList.remove("active");
-        });
-        function analyzeNote() {
-            alert("AI analizuje Twoją notatkę i przygotowuje porady!");
+
+        function generateQuote() {
+            const quotes = [
+                "Jesteś silniejsza, niż myślisz.",
+                "Każdy dzień to nowa szansa na sukces.",
+                "Twoje myśli kształtują Twoją rzeczywistość.",
+                "Nigdy nie rezygnuj z marzeń.",
+                "Masz w sobie więcej mocy, niż sądzisz!"
+            ];
+            document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
         }
     </script>
 </body>
