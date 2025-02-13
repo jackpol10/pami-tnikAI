@@ -99,6 +99,11 @@
             <button class="btn" onclick="registerUser()">Zarejestruj się</button>
         </div>
     </main>
+      <script>
+        document.querySelectorAll(".tab-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active-tab"));
+                document.getElementById(button.getAttribute("data-tab")).classList.add("active-tab");      
             });
         });
 
@@ -149,3 +154,4 @@
         }
     </script>
 </body>
+</html>
