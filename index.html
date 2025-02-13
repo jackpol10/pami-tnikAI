@@ -22,11 +22,18 @@
             border-radius: 10px;
             padding: 20px;
         }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ff69b4;
+            text-shadow: 2px 2px 8px rgba(255, 20, 147, 0.6);
+        }
     </style>
 </head>
 <body class="bg-pink-100 text-gray-900">
-    <header class="bg-pink-500 text-white p-4 text-center text-3xl font-semibold shadow-md glow-text">
-        ✨ Pamiętnik AI ✨
+    <header class="bg-pink-500 text-white p-4 text-center shadow-md">
+        <span class="logo">✨ PAMIĘTNIK AI ✨</span>
     </header>
     
     <nav class="flex justify-between p-4 bg-white shadow-md">
@@ -36,25 +43,16 @@
             <button class="tab-btn" data-tab="quotes">🌟 Afirmacje</button>
             <button class="tab-btn" data-tab="album">📷 Album</button>
         </div>
-        <button class="tab-btn" data-tab="auth">🔐 Logowanie</button>
+        <div>
+            <button class="tab-btn" data-tab="auth">🔐 Logowanie</button>
+            <button class="tab-btn" data-tab="register">🆕 Rejestracja</button>
+        </div>
     </nav>
     
     <main class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg overlay">
         <div id="home" class="tab-content active-tab">
             <h2 class="text-3xl font-semibold mb-4 glow-text text-center">Witaj w Pamiętniku AI! 💖</h2>
-            <p class="text-gray-700 text-lg text-center">Pamiętnik AI to Twój osobisty, wirtualny dziennik, który pozwala zapisywać myśli, przeżycia i emocje każdego dnia. AI analizuje Twoje wpisy, dostarcza inspirujące afirmacje oraz motywujące cytaty. Dołącz i zacznij swoją podróż już dziś! ✨</p>
-        </div>
-        
-        <div id="notes" class="tab-content">
-            <h2 class="text-xl font-semibold mb-4">Dodaj nową notatkę:</h2>
-            <textarea class="w-full p-3 border rounded-md" rows="4" placeholder="Napisz coś..."></textarea>
-            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md">Zapisz</button>
-        </div>
-        
-        <div id="quotes" class="tab-content">
-            <h2 class="text-xl font-semibold mb-4">Twoje codzienne afirmacje:</h2>
-            <p id="quote" class="text-gray-700 italic">"Jesteś wyjątkowa i silna."</p>
-            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md" onclick="generateQuote()">Nowa afirmacja</button>
+            <p class="text-gray-700 text-lg text-center">Pamiętnik AI to Twój osobisty, wirtualny dziennik, który pozwala zapisywać myśli, przeżycia i emocje każdego dnia. AI analizuje Twoje wpisy, dostarcza inspirujące afirmacje oraz motywujące cytaty. To nie tylko miejsce na wspomnienia, ale także Twoje codzienne wsparcie i motywacja! Dołącz do nas i rozpocznij swoją podróż do lepszego samopoczucia i samoświadomości! ✨</p>
         </div>
         
         <div id="album" class="tab-content">
@@ -63,12 +61,20 @@
             <button class="w-full bg-pink-500 text-white p-2 rounded-md" onclick="addImage()">Dodaj zdjęcie</button>
             <div id="gallery" class="mt-4 grid grid-cols-2 gap-4"></div>
         </div>
-        
+
         <div id="auth" class="tab-content">
             <h2 class="text-xl font-semibold mb-4">Zaloguj się</h2>
             <input type="text" placeholder="Login" class="w-full p-2 border rounded-md mb-2">
             <input type="password" placeholder="Hasło" class="w-full p-2 border rounded-md mb-2">
             <button class="w-full bg-pink-500 text-white p-2 rounded-md">Zaloguj</button>
+        </div>
+
+        <div id="register" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Załóż konto</h2>
+            <input type="text" placeholder="Login" class="w-full p-2 border rounded-md mb-2">
+            <input type="email" placeholder="E-mail" class="w-full p-2 border rounded-md mb-2">
+            <input type="password" placeholder="Hasło" class="w-full p-2 border rounded-md mb-2">
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md">Zarejestruj się</button>
         </div>
     </main>
     
@@ -79,18 +85,7 @@
                 document.getElementById(button.getAttribute("data-tab")).classList.add("active-tab");
             });
         });
-        
-        function generateQuote() {
-            const quotes = [
-                "Jesteś wyjątkowa i silna.",
-                "Każdy dzień to nowa szansa.",
-                "Twoje myśli mają moc.",
-                "Nigdy nie rezygnuj ze swoich marzeń.",
-                "Masz w sobie nieskończoną siłę!"
-            ];
-            document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
-        }
-        
+
         function addImage() {
             const fileInput = document.getElementById("imageUpload");
             if (fileInput.files.length > 0) {
@@ -101,13 +96,15 @@
                     div.classList.add("relative");
                     const img = document.createElement("img");
                     img.src = e.target.result;
-                    img.classList.add("rounded-lg", "shadow-md", "w-full");
-                    const button = document.createElement("button");
-                    button.innerText = "Usuń";
-                    button.classList.add("absolute", "top-2", "right-2", "bg-red-500", "text-white", "p-1", "rounded");
-                    button.onclick = function () { div.remove(); };
+                    img.classList.add("rounded-lg", "shadow-md");
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.innerText = "Usuń";
+                    deleteBtn.classList.add("absolute", "top-2", "right-2", "bg-red-500", "text-white", "p-1", "rounded");
+                    deleteBtn.onclick = function () {
+                        div.remove();
+                    };
                     div.appendChild(img);
-                    div.appendChild(button);
+                    div.appendChild(deleteBtn);
                     document.getElementById("gallery").appendChild(div);
                 };
                 reader.readAsDataURL(file);
