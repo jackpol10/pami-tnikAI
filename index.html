@@ -104,8 +104,6 @@
             button.addEventListener("click", () => {
                 document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active-tab"));
                 document.getElementById(button.getAttribute("data-tab")).classList.add("active-tab");      
-            });
-        });
 
         function addNote() {
             const noteInput = document.getElementById("noteInput");
@@ -152,6 +150,8 @@
                 alert("Błędne dane logowania!");
             }
         }
+                        });
+        });
     </script>
 </body>
 </html>
