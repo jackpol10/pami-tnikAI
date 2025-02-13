@@ -36,13 +36,17 @@
             <button class="tab-btn" data-tab="quotes">🌟 Afirmacje</button>
             <button class="tab-btn" data-tab="album">📷 Album</button>
         </div>
-        <button class="tab-btn" data-tab="auth">🔐 Logowanie</button>
+        <div class="space-x-2">
+            <button class="tab-btn" data-tab="auth">🔐 Zaloguj się</button>
+            <button class="tab-btn" data-tab="register">📝 Zarejestruj się</button>
+        </div>
     </nav>
     
     <main class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg overlay">
         <div id="home" class="tab-content active-tab">
             <h2 class="text-3xl font-semibold mb-4 glow-text text-center">Witaj w Pamiętniku AI! 💖</h2>
             <p class="text-gray-700 text-lg text-center">Pamiętnik AI to Twój osobisty, wirtualny dziennik, który pozwala zapisywać myśli, przeżycia i emocje każdego dnia. AI analizuje Twoje wpisy, dostarcza inspirujące afirmacje oraz motywujące cytaty. Dołącz i zacznij swoją podróż już dziś! ✨</p>
+            <p class="text-gray-700 mt-4">PAMIĘTNIK AI to niezwykła przestrzeń online stworzona z myślą o tych, którzy pragną dzielić się swoimi myślami, emocjami i codziennymi przeżyciami w bezpiecznym, przyjaznym środowisku. To Twój osobisty wirtualny dziennik, który nie tylko przechowuje Twoje wspomnienia, ale także analizuje Twoje wpisy i dostarcza inspirujących rad oraz afirmacji, pomagając Ci w rozwoju osobistym i poprawie samopoczucia.</p>
         </div>
         
         <div id="notes" class="tab-content">
@@ -70,6 +74,14 @@
             <input type="password" placeholder="Hasło" class="w-full p-2 border rounded-md mb-2">
             <button class="w-full bg-pink-500 text-white p-2 rounded-md">Zaloguj</button>
         </div>
+        
+        <div id="register" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Zarejestruj się</h2>
+            <input type="text" placeholder="Nazwa użytkownika" class="w-full p-2 border rounded-md mb-2">
+            <input type="email" placeholder="E-mail" class="w-full p-2 border rounded-md mb-2">
+            <input type="password" placeholder="Hasło" class="w-full p-2 border rounded-md mb-2">
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md">Zarejestruj</button>
+        </div>
     </main>
     
     <script>
@@ -79,32 +91,6 @@
                 document.getElementById(button.getAttribute("data-tab")).classList.add("active-tab");
             });
         });
-        
-        function generateQuote() {
-            const quotes = [
-                "Jesteś wyjątkowa i silna.",
-                "Każdy dzień to nowa szansa.",
-                "Twoje myśli mają moc.",
-                "Nigdy nie rezygnuj ze swoich marzeń.",
-                "Masz w sobie nieskończoną siłę!"
-            ];
-            document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
-        }
-        
-        function addImage() {
-            const fileInput = document.getElementById("imageUpload");
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const img = document.createElement("img");
-                    img.src = e.target.result;
-                    img.classList.add("rounded-lg", "shadow-md");
-                    document.getElementById("gallery").appendChild(img);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
     </script>
 </body>
 </html>
