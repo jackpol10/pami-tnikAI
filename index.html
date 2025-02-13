@@ -31,43 +31,44 @@
     
     <nav class="flex justify-between p-4 bg-white shadow-md">
         <div class="space-x-4">
-            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="home">🏠 Strona Główna</button>
-            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="notes">📝 Notatki</button>
-            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="quotes">🌟 Afirmacje</button>
-            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="album">📷 Album</button>
+            <button class="tab-btn" data-tab="home">🏠 Strona Główna</button>
+            <button class="tab-btn" data-tab="notes">📝 Notatki</button>
+            <button class="tab-btn" data-tab="quotes">🌟 Afirmacje</button>
+            <button class="tab-btn" data-tab="album">📷 Album</button>
         </div>
-        <button class="tab-btn px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700" data-tab="auth">🔐 Logowanie</button>
+        <button class="tab-btn" data-tab="auth">🔐 Logowanie</button>
     </nav>
     
     <main class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg overlay">
         <div id="home" class="tab-content active-tab">
             <h2 class="text-3xl font-semibold mb-4 glow-text text-center">Witaj w Pamiętniku AI! 💖</h2>
-            <p class="text-gray-700 text-lg text-center">To miejsce stworzone specjalnie dla Ciebie! Możesz tutaj zapisywać swoje myśli, przeżycia i emocje każdego dnia. Dodawaj zdjęcia, twórz własne albumy i korzystaj z motywujących cytatów. Nasza AI pomoże Ci analizować Twoje wpisy i dostarczy Ci inspirujących afirmacji na dany dzień. ✨</p>
-            
-            <h3 class="text-xl font-semibold mt-6">Co to jest Pamiętnik AI?</h3>
-            <p class="text-gray-700 text-lg">Pamiętnik AI to Twój osobisty wirtualny dziennik, który analizuje Twoje wpisy i dostarcza inspirujących rad oraz afirmacji, pomagając Ci w rozwoju osobistym i poprawie samopoczucia.</p>
-            
-            <h3 class="text-xl font-semibold mt-6">Jak to działa?</h3>
-            <p class="text-gray-700 text-lg">Po zalogowaniu się możesz prowadzić swój dziennik online – dodawać wpisy, zdjęcia i refleksje. Sztuczna inteligencja analizuje Twoje treści, oferując spersonalizowane porady oraz afirmacje.</p>
+            <p class="text-gray-700 text-lg text-center">Pamiętnik AI to Twój osobisty, wirtualny dziennik, który pozwala zapisywać myśli, przeżycia i emocje każdego dnia. AI analizuje Twoje wpisy, dostarcza inspirujące afirmacje oraz motywujące cytaty. Dołącz i zacznij swoją podróż już dziś! ✨</p>
         </div>
         
         <div id="notes" class="tab-content">
             <h2 class="text-xl font-semibold mb-4">Dodaj nową notatkę:</h2>
-            <textarea class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400" rows="4" placeholder="Napisz coś..."></textarea>
-            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition">Zapisz</button>
+            <textarea class="w-full p-3 border rounded-md" rows="4" placeholder="Napisz coś..."></textarea>
+            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md">Zapisz</button>
         </div>
         
         <div id="quotes" class="tab-content">
             <h2 class="text-xl font-semibold mb-4">Twoje codzienne afirmacje:</h2>
-            <p id="quote" class="text-gray-700 italic">"Jesteś silniejsza, niż myślisz."</p>
-            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition" onclick="generateQuote()">Nowa afirmacja</button>
+            <p id="quote" class="text-gray-700 italic">"Jesteś wyjątkowa i silna."</p>
+            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md" onclick="generateQuote()">Nowa afirmacja</button>
         </div>
         
         <div id="album" class="tab-content">
             <h2 class="text-xl font-semibold mb-4">Twój album 📸</h2>
             <input type="file" id="imageUpload" class="mb-4 p-2 border rounded-md">
-            <button class="w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition" onclick="addImage()">Dodaj zdjęcie</button>
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md" onclick="addImage()">Dodaj zdjęcie</button>
             <div id="gallery" class="mt-4 grid grid-cols-2 gap-4"></div>
+        </div>
+        
+        <div id="auth" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Zaloguj się</h2>
+            <input type="text" placeholder="Login" class="w-full p-2 border rounded-md mb-2">
+            <input type="password" placeholder="Hasło" class="w-full p-2 border rounded-md mb-2">
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md">Zaloguj</button>
         </div>
     </main>
     
@@ -78,16 +79,31 @@
                 document.getElementById(button.getAttribute("data-tab")).classList.add("active-tab");
             });
         });
-
+        
         function generateQuote() {
             const quotes = [
-                "Jesteś silniejsza, niż myślisz.",
-                "Każdy dzień to nowa szansa na sukces.",
-                "Twoje myśli kształtują Twoją rzeczywistość.",
-                "Nigdy nie rezygnuj z marzeń.",
-                "Masz w sobie więcej mocy, niż sądzisz!"
+                "Jesteś wyjątkowa i silna.",
+                "Każdy dzień to nowa szansa.",
+                "Twoje myśli mają moc.",
+                "Nigdy nie rezygnuj ze swoich marzeń.",
+                "Masz w sobie nieskończoną siłę!"
             ];
             document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
+        }
+        
+        function addImage() {
+            const fileInput = document.getElementById("imageUpload");
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.classList.add("rounded-lg", "shadow-md");
+                    document.getElementById("gallery").appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
         }
     </script>
 </body>
