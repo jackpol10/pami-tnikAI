@@ -13,16 +13,14 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color: #4a4a4a;
         }
         .tab-content { display: none; }
         .active-tab { display: block; }
         .glow-text { text-shadow: 0 0 8px rgba(255, 105, 180, 0.8); }
         .overlay {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .logo {
             font-family: 'Playfair Display', serif;
@@ -31,14 +29,7 @@
             color: #ff69b4;
             text-shadow: 2px 2px 8px rgba(255, 20, 147, 0.6);
         }
-        .btn {
-            background-color: #ff69b4;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            width: 100%;
-            cursor: pointer;
-        }
+        .hidden { display: none; }
     </style>
 </head>
 <body class="bg-pink-100 text-gray-900">
@@ -62,21 +53,21 @@
     <main class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg overlay">
         <div id="home" class="tab-content active-tab">
             <h2 class="text-3xl font-semibold mb-4 glow-text text-center">Witaj w Pamiętniku AI! 💖</h2>
-            <p class="text-gray-700 text-lg text-center">Zarejestruj się już dziś i zacznij korzystać z funkcji takich jak dodawanie notatek, generowanie afirmacji oraz prowadzenie albumu zdjęć!</p>
+            <p class="text-gray-700 text-lg text-center">Pamiętnik AI to Twój osobisty, wirtualny dziennik, który pozwala zapisywać myśli, przeżycia i emocje każdego dnia...</p>
         </div>
 
-        <div id="auth" class="tab-content">
-            <h2 class="text-xl font-semibold mb-4">🔐 Logowanie</h2>
-            <input type="email" id="loginEmail" class="w-full p-2 border rounded-md mb-2" placeholder="Email">
+        <div id="auth" class="tab-content hidden">
+            <h2 class="text-xl font-semibold mb-4">Logowanie</h2>
+            <input type="text" id="loginUsername" class="w-full p-2 border rounded-md mb-2" placeholder="Nazwa użytkownika">
             <input type="password" id="loginPassword" class="w-full p-2 border rounded-md mb-2" placeholder="Hasło">
-            <button class="btn" onclick="loginUser()">Zaloguj się</button>
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md">Zaloguj</button>
         </div>
 
-        <div id="register" class="tab-content">
-            <h2 class="text-xl font-semibold mb-4">🆕 Rejestracja</h2>
-            <input type="email" id="registerEmail" class="w-full p-2 border rounded-md mb-2" placeholder="Email">
+        <div id="register" class="tab-content hidden">
+            <h2 class="text-xl font-semibold mb-4">Rejestracja</h2>
+            <input type="text" id="registerUsername" class="w-full p-2 border rounded-md mb-2" placeholder="Nazwa użytkownika">
             <input type="password" id="registerPassword" class="w-full p-2 border rounded-md mb-2" placeholder="Hasło">
-            <button class="btn" onclick="registerUser()">Zarejestruj się</button>
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md">Zarejestruj</button>
         </div>
     </main>
     
@@ -87,27 +78,6 @@
                 document.getElementById(button.getAttribute("data-tab")).classList.add("active-tab");
             });
         });
-
-        function registerUser() {
-            const email = document.getElementById("registerEmail").value;
-            const password = document.getElementById("registerPassword").value;
-            if (email && password) {
-                localStorage.setItem(email, password);
-                alert("Rejestracja zakończona sukcesem! Możesz się teraz zalogować.");
-            } else {
-                alert("Podaj email i hasło!");
-            }
-        }
-
-        function loginUser() {
-            const email = document.getElementById("loginEmail").value;
-            const password = document.getElementById("loginPassword").value;
-            if (localStorage.getItem(email) === password) {
-                alert("Zalogowano pomyślnie!");
-            } else {
-                alert("Błędne dane logowania!");
-            }
-        }
     </script>
 </body>
 </html>
