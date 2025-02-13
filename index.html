@@ -64,8 +64,27 @@
             <h2 class="text-3xl font-semibold mb-4 glow-text text-center">Witaj w Pamiętniku AI! 💖</h2>
             <p class="text-gray-700 text-lg text-center">Zarejestruj się już dziś i zacznij korzystać z funkcji takich jak dodawanie notatek, generowanie afirmacji oraz prowadzenie albumu zdjęć!</p>
         </div>
-
+        <div id="notes" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Twoje notatki 📝</h2>
+            <textarea id="noteInput" class="w-full p-2 border rounded-md mb-2" placeholder="Dodaj swoją notatkę..."></textarea>
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md" onclick="addNote()">Dodaj notatkę</button>
+            <ul id="notesList" class="mt-4 space-y-2"></ul>
+        </div>
+        
+        <div id="quotes" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Codzienne afirmacje 🌟</h2>
+            <p id="affirmation" class="text-center text-lg font-semibold"></p>
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md mt-4" onclick="generateAffirmation()">Generuj afirmację</button>
         <div id="auth" class="tab-content">
+        </div>
+            
+            <div id="album" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Twój album 📸</h2>
+            <input type="file" id="imageUpload" class="mb-4 p-2 border rounded-md">
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md" onclick="addImage()">Dodaj zdjęcie</button>
+            <div id="gallery" class="mt-4 grid grid-cols-2 gap-4">
+        </div>
+                
             <h2 class="text-xl font-semibold mb-4">🔐 Logowanie</h2>
             <input type="email" id="loginEmail" class="w-full p-2 border rounded-md mb-2" placeholder="Email">
             <input type="password" id="loginPassword" class="w-full p-2 border rounded-md mb-2" placeholder="Hasło">
@@ -87,7 +106,29 @@
                 document.getElementById(button.getAttribute("data-tab")).classList.add("active-tab");
             });
         });
+        function addNote() {
+            const noteInput = document.getElementById("noteInput");
+            const notesList = document.getElementById("notesList");
+            const note = document.createElement("li");
+            note.textContent = noteInput.value;
+            notesList.appendChild(note);
+            noteInput.value = "";
 
+        function generateAffirmation() {
+            const affirmations = [
+                "Jesteś silna i zdolna!",
+                "Każdy dzień to nowa szansa!",
+                "Twoje myśli mają moc!",
+                "Masz w sobie ogromny potencjał!",
+                "Zasługujesz na miłość i szczęście!",
+                "Jesteś wystarczająca taka, jaka jesteś!",
+                "Zmieniasz świat na lepsze!",
+                "Każdy krok do przodu to sukces!",
+                "Wszystko, czego potrzebujesz, masz w sobie!",
+                "Twój uśmiech rozświetla świat!"
+            ];
+            document.getElementById("affirmation").textContent = affirmations[Math.floor(Math.random() * affirmations.length)];
+                
         function registerUser() {
             const email = document.getElementById("registerEmail").value;
             const password = document.getElementById("registerPassword").value;
