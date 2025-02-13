@@ -5,31 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pamiętnik AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
         }
+        .tab-content { display: none; }
+        .active-tab { display: block; }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
-    <header class="bg-blue-600 text-white p-4 text-center text-2xl font-semibold shadow-md">
-        Pamiętnik AI 📖✨
+<body class="bg-pink-100 text-gray-900">
+    <header class="bg-pink-500 text-white p-4 text-center text-2xl font-semibold shadow-md">
+        ✨ Pamiętnik AI ✨
     </header>
     
+    <nav class="flex justify-center space-x-4 p-4 bg-white shadow-md">
+        <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="notes">📝 Notatki</button>
+        <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="quotes">🌟 Cytaty</button>
+        <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="auth">🔐 Logowanie</button>
+    </nav>
+    
     <main class="max-w-3xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg">
-        <h2 class="text-xl font-semibold mb-4">Dodaj nowy wpis:</h2>
-        <textarea class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" rows="4" placeholder="Napisz coś..."></textarea>
-        <button class="mt-4 w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition">Zapisz wpis</button>
+        <div id="notes" class="tab-content active-tab">
+            <h2 class="text-xl font-semibold mb-4">Dodaj nową notatkę:</h2>
+            <textarea class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400" rows="4" placeholder="Napisz coś..."></textarea>
+            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition">Zapisz</button>
+        </div>
+        
+        <div id="quotes" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Twoje codzienne inspiracje:</h2>
+            <p id="quote" class="text-gray-700 italic">"Jesteś silniejsza, niż myślisz."</p>
+            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition" onclick="generateQuote()">Nowy cytat</button>
+        </div>
+        
+        <div id="auth" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Zaloguj się</h2>
+            <input type="text" class="w-full p-2 border rounded-md mb-2" placeholder="Email">
+            <input type="password" class="w-full p-2 border rounded-md mb-2" placeholder="Hasło">
+            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition">Zaloguj</button>
+            <p class="mt-2 text-sm">Nie masz konta? <a href="#" class="text-pink-600">Zarejestruj się</a></p>
+        </div>
     </main>
     
-    <section class="max-w-3xl mx-auto mt-6">
-        <h3 class="text-lg font-semibold mb-3">Twoje wpisy:</h3>
-        <div class="space-y-4">
-            <div class="p-4 bg-white rounded-lg shadow-md">
-                <p class="text-gray-700">To jest przykładowy wpis. Możesz dodać swoje wspomnienia i zdjęcia! 😊</p>
-            </div>
-        </div>
-    </section>
+    <script>
+        const tabs = document.querySelectorAll(".tab-btn");
+        const contents = document.querySelectorAll(".tab-content");
+        
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                contents.forEach(content => content.classList.remove("active-tab"));
+                document.getElementById(tab.getAttribute("data-tab")).classList.add("active-tab");
+            });
+        });
+        
+        function generateQuote() {
+            const quotes = [
+                "Każdy dzień jest nową szansą.",
+                "Jesteś silniejsza, niż myślisz.",
+                "Cokolwiek się stanie, dasz sobie radę!",
+                "Życie jest piękne – wystarczy spojrzeć z innej perspektywy."
+            ];
+            document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
+        }
+    </script>
 </body>
 </html>
