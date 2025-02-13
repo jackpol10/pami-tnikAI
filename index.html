@@ -13,103 +13,100 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color: #4a4a4a;
         }
         .tab-content { display: none; }
         .active-tab { display: block; }
         .glow-text { text-shadow: 0 0 8px rgba(255, 105, 180, 0.8); }
         .overlay {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 600;
-            color: #ff69b4;
-            text-shadow: 2px 2px 8px rgba(255, 20, 147, 0.6);
-        }
-        .btn {
-            background-color: #ff69b4;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            width: 100%;
-            cursor: pointer;
         }
     </style>
 </head>
 <body class="bg-pink-100 text-gray-900">
-    <header class="bg-pink-500 text-white p-4 text-center shadow-md">
-        <span class="logo">✨ PAMIĘTNIK AI ✨</span>
+    <header class="bg-pink-500 text-white p-4 text-center text-3xl font-semibold shadow-md glow-text">
+        ✨ Pamiętnik AI ✨
     </header>
     
     <nav class="flex justify-between p-4 bg-white shadow-md">
         <div class="space-x-4">
-            <button class="tab-btn" data-tab="home">🏠 Strona Główna</button>
-            <button class="tab-btn" data-tab="notes">📝 Notatki</button>
-            <button class="tab-btn" data-tab="quotes">🌟 Afirmacje</button>
-            <button class="tab-btn" data-tab="album">📷 Album</button>
+            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="home">🏠 Strona Główna</button>
+            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="notes">📝 Notatki</button>
+            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="quotes">🌟 Cytaty</button>
+            <button class="tab-btn px-4 py-2 bg-pink-400 text-white rounded-md hover:bg-pink-500" data-tab="album">📷 Album</button>
         </div>
-        <div>
-            <button class="tab-btn" data-tab="auth">🔐 Logowanie</button>
-            <button class="tab-btn" data-tab="register">🆕 Rejestracja</button>
-        </div>
+        <button class="tab-btn px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700" data-tab="auth">🔐 Logowanie</button>
     </nav>
     
     <main class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg overlay">
         <div id="home" class="tab-content active-tab">
             <h2 class="text-3xl font-semibold mb-4 glow-text text-center">Witaj w Pamiętniku AI! 💖</h2>
-            <p class="text-gray-700 text-lg text-center">Zarejestruj się już dziś i zacznij korzystać z funkcji takich jak dodawanie notatek, generowanie afirmacji oraz prowadzenie albumu zdjęć!</p>
+            <p class="text-gray-700 text-lg text-center">To miejsce stworzone specjalnie dla Ciebie! Możesz tutaj zapisywać swoje myśli, przeżycia i emocje każdego dnia. Dodawaj zdjęcia, twórz własne albumy i korzystaj z motywujących cytatów. Nasza AI pomoże Ci analizować Twoje wpisy i dostarczy Ci inspirujących afirmacji na dany dzień. ✨</p>
+            <div class="mt-6 grid grid-cols-2 gap-4">
+                <img src="images/notebook.jpg" class="rounded-lg shadow-md">
+                <img src="images/cozy-desk.jpg" class="rounded-lg shadow-md">
+            </div>
+            <p class="text-gray-700 text-lg mt-6 text-center">Zanurz się w świat własnych myśli i pozwól, aby Pamiętnik AI stał się Twoim cyfrowym przyjacielem! 💕</p>
         </div>
-
-        <div id="auth" class="tab-content">
-            <h2 class="text-xl font-semibold mb-4">🔐 Logowanie</h2>
-            <input type="email" id="loginEmail" class="w-full p-2 border rounded-md mb-2" placeholder="Email">
-            <input type="password" id="loginPassword" class="w-full p-2 border rounded-md mb-2" placeholder="Hasło">
-            <button class="btn" onclick="loginUser()">Zaloguj się</button>
+        
+        <div id="notes" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Dodaj nową notatkę:</h2>
+            <textarea class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400" rows="4" placeholder="Napisz coś..."></textarea>
+            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition">Zapisz</button>
         </div>
-
-        <div id="register" class="tab-content">
-            <h2 class="text-xl font-semibold mb-4">🆕 Rejestracja</h2>
-            <input type="email" id="registerEmail" class="w-full p-2 border rounded-md mb-2" placeholder="Email">
-            <input type="password" id="registerPassword" class="w-full p-2 border rounded-md mb-2" placeholder="Hasło">
-            <button class="btn" onclick="registerUser()">Zarejestruj się</button>
+        
+        <div id="quotes" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Twoje codzienne inspiracje:</h2>
+            <p id="quote" class="text-gray-700 italic">"Jesteś silniejsza, niż myślisz."</p>
+            <button class="mt-4 w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition" onclick="generateQuote()">Nowy cytat</button>
+        </div>
+        
+        <div id="album" class="tab-content">
+            <h2 class="text-xl font-semibold mb-4">Twój album 📸</h2>
+            <input type="file" id="imageUpload" class="mb-4 p-2 border rounded-md">
+            <button class="w-full bg-pink-500 text-white p-2 rounded-md hover:bg-pink-600 transition" onclick="addImage()">Dodaj zdjęcie</button>
+            <div id="gallery" class="mt-4 grid grid-cols-2 gap-4"></div>
         </div>
     </main>
     
     <script>
-        document.querySelectorAll(".tab-btn").forEach(button => {
-            button.addEventListener("click", () => {
-                document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active-tab"));
-                document.getElementById(button.getAttribute("data-tab")).classList.add("active-tab");
+        // Obsługa przełączania zakładek
+        const tabs = document.querySelectorAll(".tab-btn");
+        const contents = document.querySelectorAll(".tab-content");
+        
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                contents.forEach(content => content.classList.remove("active-tab"));
+                document.getElementById(tab.getAttribute("data-tab")).classList.add("active-tab");
             });
         });
 
-        function registerUser() {
-            const email = document.getElementById("registerEmail").value;
-            const password = document.getElementById("registerPassword").value;
-            if (email && password) {
-                localStorage.setItem(email, password);
-                alert("Rejestracja zakończona sukcesem! Możesz się teraz zalogować.");
-                document.getElementById("registerEmail").value = "";
-                document.getElementById("registerPassword").value = "";
-            } else {
-                alert("Podaj email i hasło!");
-            }
+        // Generator cytatów
+        function generateQuote() {
+            const quotes = [
+                "Jesteś silniejsza, niż myślisz.",
+                "Każdy dzień to nowa szansa na sukces.",
+                "Twoje myśli kształtują Twoją rzeczywistość.",
+                "Nigdy nie rezygnuj z marzeń.",
+                "Masz w sobie więcej mocy, niż sądzisz!"
+            ];
+            document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
         }
 
-        function loginUser() {
-            const email = document.getElementById("loginEmail").value;
-            const password = document.getElementById("loginPassword").value;
-            if (localStorage.getItem(email) === password) {
-                alert("Zalogowano pomyślnie!");
-                document.getElementById("loginEmail").value = "";
-                document.getElementById("loginPassword").value = "";
-            } else {
-                alert("Błędne dane logowania!");
+        // Funkcja dodawania zdjęć do albumu
+        function addImage() {
+            const fileInput = document.getElementById("imageUpload");
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    img.classList.add("rounded-lg", "shadow-md", "w-full");
+                    document.getElementById("gallery").appendChild(img);
+                };
+                reader.readAsDataURL(file);
             }
         }
     </script>
